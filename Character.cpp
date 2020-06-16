@@ -7,20 +7,42 @@
 #include "util/Dice.h"
 
 
+/**
+ * Constructor
+ * @param dungeon is used to define the limits for coordinates
+ */
 Character::Character(const Dungeon &dungeon) {
     placeOnRandomCoordinates(dungeon.getWidth(), dungeon.getHeight());
 }
 
+/**
+ * Gets random coordinates with the parameter bounds
+ * @param xLimit - is the upper bound for x coordinate
+ * @param yLimit - is the upper bound for y coordinate
+ */
 void Character::placeOnRandomCoordinates(int xLimit, int yLimit) {
     coordinateX = Dice::getRandomNumber(xLimit);
     coordinateY = Dice::getRandomNumber(yLimit);
 }
 
+/**
+ * Moves the character in the given direction
+ * @param direction
+ * @param dungeon
+ * @return
+ */
 bool Character::move(char direction, Dungeon *dungeon) {
     updateCoordinate(direction, dungeon->getWidth(), dungeon->getHeight());
     return interactWithField(dungeon);
 }
 
+/**
+ * Updates the coordinate corresponding to the input
+ * If the border is reached player won't move past it
+ * @param direction
+ * @param xLimit
+ * @param yLimit
+ */
 void Character::updateCoordinate(char direction, int xLimit, int yLimit) {
     if (direction == 'D' && coordinateX < xLimit - 1) {
         coordinateX++;
@@ -33,6 +55,12 @@ void Character::updateCoordinate(char direction, int xLimit, int yLimit) {
     }
 }
 
+/**
+ * Interaction with the Field
+ * Based on field type different things can happen to the Character
+ * @param dungeon
+ * @return boolean, true if Character is still alive, false otherwise
+ */
 bool Character::interactWithField(Dungeon *dungeon) {
     std::cout << std::endl;
     Field field = dungeon->getField(coordinateX, coordinateY);
@@ -70,7 +98,12 @@ bool Character::interactWithField(Dungeon *dungeon) {
     return lifePoints > 0;
 }
 
-int Character::getCorrespondingAttribute(Attribute attribute) {
+/**
+ * Calculates and returns the correct attribute value of the character
+ * @param attribute
+ * @return
+ */
+int Character::getCorrespondingAttribute(Attribute attribute) const {
     if (attribute == Attribute::Strength) {
         return strength;
     } else if (attribute == Attribute::Agility) {
@@ -80,6 +113,10 @@ int Character::getCorrespondingAttribute(Attribute attribute) {
     }
 }
 
+/**
+ * Increases the correct XP point of the Character
+ * @param attribute
+ */
 void Character::increaseCorrespondingXP(Attribute attribute) {
     if (attribute == Attribute::Strength) {
         strengthXP++;
@@ -102,15 +139,10 @@ void Character::increaseCorrespondingXP(Attribute attribute) {
     }
 }
 
-int Character::getCoordinateX() const {
-    return coordinateX;
-}
-
-int Character::getCoordinateY() const {
-    return coordinateY;
-}
-
-void Character::displayStats() {
+/**
+ * Method that displays the stats of the Character
+ */
+void Character::displayStats() const {
     std::cout << "Strength: " << strength;
     std::cout << ", Intelligence: " << intelligence;
     std::cout << ", Agility: " << agility;
@@ -118,4 +150,14 @@ void Character::displayStats() {
     std::cout << ", StrengthXP: " << strengthXP;
     std::cout << ", IntelligenceXP: " << intelligenceXP;
     std::cout << ", AgilityXP: " << agilityXP << std::endl;
+}
+
+//Getters
+
+int Character::getCoordinateX() const {
+    return coordinateX;
+}
+
+int Character::getCoordinateY() const {
+    return coordinateY;
 }

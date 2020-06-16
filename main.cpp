@@ -4,6 +4,11 @@
 #include "util/StringUtil.h"
 
 using namespace std;
+
+/**
+ * Runner method
+ * @return
+ */
 int main() {
     auto *dungeon = new Dungeon;
     Character character(*dungeon);

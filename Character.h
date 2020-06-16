@@ -1,5 +1,5 @@
 //
-// Created by extremer on 16.06.20.
+// Created by Javid Asgarov on 16.06.20.
 //
 
 #ifndef DUNGEONCRAWLER_CHARACTER_H
@@ -31,7 +31,7 @@ public:
 
     bool interactWithField(Dungeon *dungeon);
 
-    int getCorrespondingAttribute(Attribute attribute);
+    int getCorrespondingAttribute(Attribute attribute) const;
 
     void increaseCorrespondingXP(Attribute attribute);
 
@@ -41,7 +41,7 @@ public:
 
     int getCoordinateY() const;
 
-    void displayStats();
+    void displayStats() const;
 };
 
 

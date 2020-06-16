@@ -1,5 +1,5 @@
 //
-// Created by extremer on 16.06.20.
+// Created by Javid Asgarov on 16.06.20.
 //
 
 #ifndef DUNGEONCRAWLER_FIELD_H
@@ -14,7 +14,7 @@ class Field {
     int value = 1;
 
 public:
-    Field(int difficultyIncrease);
+    explicit Field(int difficultyIncrease);
 
     Type getType() const;
 

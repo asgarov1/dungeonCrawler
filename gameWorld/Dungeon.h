@@ -1,5 +1,5 @@
 //
-// Created by extremer on 16.06.20.
+// Created by Javid Asgarov on 16.06.20.
 //
 
 #ifndef DUNGEONCRAWLER_DUNGEON_H
